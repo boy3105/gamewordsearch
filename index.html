@@ -8,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="wordfind.css">
 </head>
 <body>
-    <h1>AE TEST THỬ ĐÊ</h1>
+    <div class="header">
+        <h1> THE WORD SEARCH </h1>
+    </div>
     <div id="main" role="main">
         <div id="puzzle"></div>
         <ul id="words">
@@ -19,14 +21,14 @@
                 <input id="allowed-missing-words" type="number" min="0" max="5" step="1" value="2">
             </label>
             <label for="max-grid-growth">Max grid growth :
-                <input id="max-grid-growth" type="number" min="0" max="5" step="1" value="0">
+                <input id="max-grid-growth" type="number" min="0" max="100" step="1" value="40">
             </label>
             <label for="extra-letters">Extra letters :
                 <select id="extra-letters">
-                    <option value="secret-word" selected>form a secret word</option>
+                    <option value="random">random</option>
+                  <!--   <option value="secret-word" selected>form a secret word</option> -->
                     <option value="none">none, allow blanks</option>
                     <option value="secret-word-plus-blanks">form a secret word but allow for extra blanks</option>
-                    <option value="random">random</option>
                 </select>
             </label>
             <label for="secret-word">Secret word :
@@ -44,27 +46,36 @@
     <script>
     /* Example words setup */
     [
-        /*'adorable',
-        'comique',
-        'curieuse',
-        'drole',
-        'engagee',
-        'enjouee',
-        'fidele',
-        'futee',
-        'radieuse',
-        'sensible',
-        'sincere',*/
-        'complice',
-        'creative',
-        'elegante',
-        'farceuse',
-        'joviale',
-        'motivee',
-        'ordonnee',
-        'prudente',
-        'sexy',
-        'tendre',
+"Gesture",
+"Means",
+"Myth",
+"Inferior",
+"Quip",
+"Blur",
+"Stemfrom",
+"Fitin",
+"Taboo",
+"Collapse",
+"Defect",
+"Imply",
+"Implication",
+"Convey",
+"Initiative",
+"Anomaly",
+"Boundary",
+"Complementary",
+"Ambiguity",
+"Biodiversity",
+"Accelerate",
+"Extinction",
+"Fluctuate",
+"Intense",
+"Mammal",
+"Relevant",
+"Evaporation",
+"Exacerbate",
+"Vulnerable",
+"Consequential",
     ].map(word => WordFindGame.insertWordBefore($('#add-word').parent(), word));
     $('#secret-word').val('LAETITIA');
 
@@ -109,3 +120,4 @@
     </script>
 </body>
 </html>
+

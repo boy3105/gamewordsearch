@@ -1,10 +1,3 @@
-/**
-* Wordfind.js 0.0.1
-* (c) 2012 Bill, BunKat LLC.
-* Wordfind is freely distributable under the MIT license.
-* For all details and documentation:
-*     http://github.com/bunkat/wordfind
-*/
 
 (function () {
 
@@ -338,7 +331,7 @@
           fillBlanks:       opts.fillBlanks !== undefined ? opts.fillBlanks : true,
           allowExtraBlanks: opts.allowExtraBlanks !== undefined ? opts.allowExtraBlanks : true,
           maxAttempts:      opts.maxAttempts || 3,
-          maxGridGrowth:    opts.maxGridGrowth !== undefined ? opts.maxGridGrowth : 10,
+          maxGridGrowth:    opts.maxGridGrowth !== undefined ? opts.maxGridGrowth : 40,
           preferOverlap:    opts.preferOverlap !== undefined ? opts.preferOverlap : true
         };
 
@@ -506,3 +499,5 @@
   root.wordfind = WordFind();
 
 }).call(this);
+
+
