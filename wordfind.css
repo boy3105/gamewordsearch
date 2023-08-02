@@ -64,12 +64,12 @@ body {
 }
 /* Indicates when a square has been selected */
 #puzzle .selected {
-  background-color: #5c0fa3;
+  background-color: #fbd67a;
 }
 
 /* indicates that the square is part of a word that has been found */ 
 #puzzle .found {
-  background-color: blue;
+  background-color: #f26f21;
   color: white;
 }
 
@@ -147,52 +147,31 @@ input[type="number"] {
 select {
   max-width: 10rem;
 }
-
+#add-word,
+#startButton,
 #create-grid,
 #solve {
-  display: block;
+  display: inline-block;
   margin-top: 1rem;
-  background-color: #5dba72;
-  color: white;
+  background-color: #f26f21;
+  color: #fff;
   font-size: 1.1em;
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   outline: none;
-  transition: background-color 0.2s ease-in-out;
-}
-
-/* Styles for the Create grid button */
-#create-grid {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-image: linear-gradient(to left, #553c9a, #b393d3);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
   transition: background-color 0.3s;
 }
 
+/* Styles for the Create grid button */
+#add-word:hover,
+#solve:hover,
 #create-grid:hover {
-  background: linear-gradient(to right, #8144bf, #610b8b);
+  background: linear-gradient(to right, #f26f21, #bc4403);
 }
-
-/* Styles for the Create grid button */
-#solve {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-image: linear-gradient(to left, #553c9a, #b393d3);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
 #solve:hover {
-  background: linear-gradient(to right, #8144bf, #610b8b);
+  background: linear-gradient(to right, #f26f21, #bc4403);
 }
 
 
@@ -206,15 +185,7 @@ select {
   font-size: 1.2em;
   color: #444;
 }
-header h1 {
-  text-align: center;
-  font-size: 70px;
-  font-weight: 600;
-  background-image: linear-gradient(to left, #553c9a, #b393d3);
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
+
 /* Styles for the extra-letters select element */
 #extra-letters {
   border: 1px solid #ccc;
@@ -224,8 +195,7 @@ header h1 {
   appearance: none; /* Removes default styles (supported in modern browsers) */
   -webkit-appearance: none; /* For Safari */
   -moz-appearance: none; /* For Firefox */
-  background-color: #fff;
-  background-image: linear-gradient(45deg, #bda4dc, #ffffff);
+  background-color: #fbd67a;
   color: #000000;
   cursor: pointer;
   position: relative;
@@ -263,4 +233,86 @@ header h1 {
 #extra-letters option:hover {
   background-color: #ddd;
   color: #000;
+}
+#coutdown {
+  font-size: 50px;
+  font-weight:bold;
+}
+#startButton {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color:#f26f21;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#startButton:hover {
+  background: linear-gradient(to right, #f26f21, #bc4403);
+}
+ /* CSS styles for the footer */
+ footer {
+  background-color: #fff;
+  color: #000000;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer a {
+  color: #000000;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* CSS styles for the logo */
+.footer-logo {
+  display: inline-block;
+  width: 16rem; /* Adjust the width of the logo as needed */
+  height: 2.5rem; /* Adjust the height of the logo as needed */
+  margin-right: 10px; /* Add some spacing between the logo and text */
+  vertical-align: middle;
+}
+
+/* CSS styles for the body and HTML to enable a sticky footer */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html {
+  font-size: 16px; /* Set the base font size for the root element */
+  height: 100%;
+}
+header {
+  background-color: #e9630a; /* Replace this with your desired background color */
+  color: #ffffff; /* You may want to set a text color to make it readable */
+  padding: 5px; /* Add some padding to make it visually appealing */
+  text-align: center; /* Center align the text inside the header */
+  margin-bottom: 20px; /* Add margin at the bottom of the header */
+  font-size: 2rem;
+}
+#puzzel {
+  touch-action: none;
+}
+.footer-logo-2 {
+  display: inline-block;
+  width: 4rem; /* Adjust the width of the logo as needed */
+  height: 4rem; /* Adjust the height of the logo as needed */
+  margin-right: 10px; /* Add some spacing between the logo and text */
+  vertical-align: middle;
+}
+#countdown {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  margin-left: 13.2rem; /* Add some margin at the bottom to separate it from the puzzle */
+  text-align: inherit; /* Center the countdown text */
 }

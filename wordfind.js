@@ -1,3 +1,10 @@
+/**
+* Wordfind.js 0.0.1
+* (c) 2012 Bill, BunKat LLC.
+* Wordfind is freely distributable under the MIT license.
+* For all details and documentation:
+*     http://github.com/bunkat/wordfind
+*/
 
 (function () {
 
@@ -331,7 +338,7 @@
           fillBlanks:       opts.fillBlanks !== undefined ? opts.fillBlanks : true,
           allowExtraBlanks: opts.allowExtraBlanks !== undefined ? opts.allowExtraBlanks : true,
           maxAttempts:      opts.maxAttempts || 3,
-          maxGridGrowth:    opts.maxGridGrowth !== undefined ? opts.maxGridGrowth : 40,
+          maxGridGrowth:    opts.maxGridGrowth !== undefined ? opts.maxGridGrowth : 10,
           preferOverlap:    opts.preferOverlap !== undefined ? opts.preferOverlap : true
         };
 
@@ -497,7 +504,15 @@
   */
   var root = typeof exports !== "undefined" && exports !== null ? exports : window;
   root.wordfind = WordFind();
+  var puzzle = document.getElementById('puzzle');
 
+// Disable touchmove event (for touch devices) to prevent scrolling
+puzzle.addEventListener('touchmove', function(event) {
+  event.preventDefault();
+}, { passive: false });
+
+// Disable mousewheel event (for non-touch devices) to prevent scrolling
+puzzle.addEventListener('wheel', function(event) {
+  event.preventDefault();
+}, { passive: false });
 }).call(this);
-
-

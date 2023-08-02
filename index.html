@@ -8,10 +8,12 @@
     <link rel="stylesheet" type="text/css" href="wordfind.css">
 </head>
 <body>
-    <div class="header">
-        <h1> THE WORD SEARCH </h1>
-    </div>
+    <header>
+        <h1>WORD PUZZLE</h1>
+    </header>
+    
     <div id="main" role="main">
+        <div id="countdown">00:00</div>
         <div id="puzzle"></div>
         <ul id="words">
             <li><button id="add-word">Add word</button></li>
@@ -21,14 +23,14 @@
                 <input id="allowed-missing-words" type="number" min="0" max="5" step="1" value="2">
             </label>
             <label for="max-grid-growth">Max grid growth :
-                <input id="max-grid-growth" type="number" min="0" max="100" step="1" value="40">
+                <input id="max-grid-growth" type="number" min="0" max="5" step="1" value="0">
             </label>
             <label for="extra-letters">Extra letters :
                 <select id="extra-letters">
-                    <option value="random">random</option>
-                  <!--   <option value="secret-word" selected>form a secret word</option> -->
-                    <option value="none">none, allow blanks</option>
-                    <option value="secret-word-plus-blanks">form a secret word but allow for extra blanks</option>
+                    <option value="Secret-word" selected>form a secret word</option>
+                    <option value="None">none, allow blanks</option>
+                    <option value="Secret-word-plus-blanks">form a secret word but allow for extra blanks</option>
+                    <option value="Random">random</option>
                 </select>
             </label>
             <label for="secret-word">Secret word :
@@ -36,8 +38,16 @@
             </label>
             <button id="create-grid">Create grid</button>
             <p id="result-message"></p>
+            <button id="startButton">Start</button>
             <button id="solve">Solve Puzzle</button>
         </fieldset>
+        <footer>
+            <a href="https://hcmuni.fpt.edu.vn" target="_blank">
+                <img class="footer-logo" src="fptu.png" alt="Logo"> <!-- Replace "path/to/your/logo.png" with the actual path to your logo image -->
+            </a>
+            <img class="footer-logo-2" src="t3.png" alt="Logo 2">
+            &copy; 2023 YourWebsiteName. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </footer>
     </div>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
@@ -46,38 +56,29 @@
     <script>
     /* Example words setup */
     [
-"Gesture",
-"Means",
-"Myth",
-"Inferior",
-"Quip",
-"Blur",
-"Stemfrom",
-"Fitin",
-"Taboo",
-"Collapse",
-"Defect",
-"Imply",
-"Implication",
-"Convey",
-"Initiative",
-"Anomaly",
-"Boundary",
-"Complementary",
-"Ambiguity",
-"Biodiversity",
-"Accelerate",
-"Extinction",
-"Fluctuate",
-"Intense",
-"Mammal",
-"Relevant",
-"Evaporation",
-"Exacerbate",
-"Vulnerable",
-"Consequential",
+        /*'adorable',
+        'comique',
+        'curieuse',
+        'cailon',
+        'engagee',
+        'enjouee',
+        'fidele',
+        'futee',
+        'radieuse',
+        'sensible',
+        'sincere',*/
+        'complice',
+        'creative',
+        'elegante',
+        'farceuse',
+        'joviale',
+        'motivee',
+        'ordonnee',
+        'prudente',
+        'hehehe',
+        'tendre',
     ].map(word => WordFindGame.insertWordBefore($('#add-word').parent(), word));
-    $('#secret-word').val('LAETITIA');
+    $('#secret-word').val('');
 
     /* Init */
     function recreate() {
@@ -118,6 +119,72 @@
 
     $('#solve').click(() => game.solve());
     </script>
+    <script>
+       
+        let timeRemaining = 0;
+        let timerId = null;
+    
+        function startCountdown() {
+        const userInput = parseInt(prompt("Enter the countdown time (seconds):"));
+        if (isNaN(userInput) || userInput <= 0) {
+            alert("Please enter a positive integer.");
+            return;
+        }
+
+        timeRemaining = userInput;
+        updateCountdown();
+
+        if (timerId) {
+            clearInterval(timerId);
+        }
+        timerId = setInterval(updateCountdown, 1000);
+    }
+
+    function updateCountdown() {
+        const minutes = Math.floor(timeRemaining / 60);
+          const seconds = timeRemaining % 60;
+          const display = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+          document.getElementById("countdown").innerText = display;
+
+        if (timeRemaining === 0) {
+            clearInterval(timerId);
+            alert("The countdown has ended! You have failed, click OK to return");
+            recreate(); // Call the existing recreate function to create a new puzzle grid
+        }
+
+        timeRemaining--;
+    }
+    function recreate() {
+        $('#result-message').removeClass();
+        var fillBlanks, game;
+        if ($('#extra-letters').val() === 'none') {
+            fillBlanks = false;
+        } else if ($('#extra-letters').val().startsWith('secret-word')) {
+            fillBlanks = $('#secret-word').val();
+        }
+        try {
+            game = new WordFindGame('#puzzle', {
+                allowedMissingWords: +$('#allowed-missing-words').val(),
+                maxGridGrowth: +$('#max-grid-growth').val(),
+                fillBlanks: fillBlanks,
+                allowExtraBlanks: ['none', 'secret-word-plus-blanks'].includes($('#extra-letters').val()),
+                maxAttempts: 100,
+            });
+        } catch (error) {
+            $('#result-message').text(`😞 ${error}, try to specify less ones`).css({color: 'red'});
+            return;
+        }
+        wordfind.print(game);
+        if (window.game) {
+            var emptySquaresCount = WordFindGame.emptySquaresCount();
+            $('#result-message').text(`😃 ${emptySquaresCount ? 'but there are empty squares' : ''}`).css({color: ''});
+        }
+        window.game = game;
+    }
+    recreate();
+        
+        const startButton = document.getElementById("startButton");
+        startButton.addEventListener("click", startCountdown);
+      </script>  
 </body>
 </html>
-

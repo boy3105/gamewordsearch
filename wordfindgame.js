@@ -1,3 +1,10 @@
+/**
+* Wordfind.js 0.0.1
+* (c) 2012 Bill, BunKat LLC.
+* Wordfind is freely distributable under the MIT license.
+* For all details and documentation:
+*     http://github.com/bunkat/wordfind
+*/
 
 (function (document, $, wordfind) {
   'use strict';
@@ -62,6 +69,7 @@
 
       return null;
     };
+
 
   /**
   * Initializes the WordFindGame object.
@@ -145,6 +153,7 @@
         selectedSquares.splice(backTo,1);
         curWord = curWord.substr(0, curWord.length-1);
       }
+
 
       // see if this is just a new orientation from the first square
       // this is needed to make selecting diagonal words easier
@@ -297,11 +306,10 @@
     $('<li><input class="word" value="' + (word || '') + '"></li>').insertBefore(el);
   };
 
+
   /**
   * Allow game to be used within the browser
   */
   window.WordFindGame = WordFindGame;
 
 }(document, jQuery, wordfind));
-
-
